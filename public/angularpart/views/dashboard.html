@@ -1,0 +1,30 @@
+<div class="container">
+    <!-- Modal -->
+    <div data-ng-include="'angularpart/views/partials/itemaddmodal.html'"></div>
+    <!-- End Modal -->
+    <div class="row">
+        <div class="col-md-4" data-ng-repeat="status in dashboard">
+            <div class="panel panel-{{status.status_class}}">
+                <div class="panel-heading panel-heading-{{status.status_class}}">{{status.status_title}}</div>
+                <div class="panel-body">
+                    <div data-ng-repeat="milestone in status.milestones" class="notice" style="border-color: {{milestone.item.color.color_code}};">
+                        <p>
+                            <a href="#!item/{{milestone.item.item_id}}" class="badge" style="background-color: {{milestone.item.color.color_code}} !important;">{{milestone.item.item_title}}</a> > Milestone: <a href="#!item/{{milestone.item_id}}">{{milestone.item_title}}</a>                            
+                            <!-- <span class="label" style="background-color: {{milestone.item.color.color_code}} !important;">Add Milestone</span> -->
+                            
+                        </p>
+                        <a href="#!category/{{milestone.item.category.category_id}}" class="badge bgblue">{{milestone.item.category.category_title}}</a>
+                        <a href="#!item/{{milestone.item.subcategory.item_id}}" class="badge bgorange">{{milestone.item.subcategory.item_title}}</a>
+                        <a href="javascript:;" class="badge bgviolet">Point: {{milestone.item_point}}</a>
+                        <p style="margin-top:5px; margin-bottom:5px !important">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" data-ng-click="modalClick(milestone.item.item_id, status.status_id, milestone.type_id)">
+                                <span class="glyphicon glyphicon-plus"></span> Add Milestone
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
