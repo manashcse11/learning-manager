@@ -43,7 +43,7 @@ lmapp.controller("DashboardController", function($scope, $http){
         .then(function successCallback(response){
             angular.forEach($scope.dashboard, function(value, key){
                 if(value.status_id == $scope.modal.status_id){
-                    value.milestones.push(response.data);
+                    value.milestones.unshift(response.data);
                     $scope.modal = [];
                 }
             });

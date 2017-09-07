@@ -15,7 +15,7 @@
                         </p>
                         <a href="#!category/{{milestone.item.category.category_id}}" class="badge bgblue">{{milestone.item.category.category_title}}</a>
                         <a href="#!item/{{milestone.item.subcategory.item_id}}" class="badge bgorange">{{milestone.item.subcategory.item_title}}</a>
-                        <a href="javascript:;" class="badge bgviolet">Point: {{milestone.item_point}}</a>
+                        <a href="javascript:;" class="badge" style="background-color: {{milestone.item.color.color_code}} !important;">Point: {{milestone.item_point}}</a>
                         <p style="margin-top:5px; margin-bottom:5px !important">
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" data-ng-click="modalClick(milestone.item.item_id, status.status_id, milestone.type_id)">
                                 <span class="glyphicon glyphicon-plus"></span> Add Milestone
