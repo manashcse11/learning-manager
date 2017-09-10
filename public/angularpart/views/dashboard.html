@@ -7,7 +7,14 @@
             <div class="panel panel-{{status.status_class}}">
                 <div class="panel-heading panel-heading-{{status.status_class}}">{{status.status_title}}</div>
                 <div class="panel-body">
-                    <div data-ng-repeat="milestone in status.milestones" class="notice" style="border-color: {{milestone.item.color.color_code}};">
+                    <div data-ng-repeat="milestone in status.milestones" class="notice" style="border-color: {{milestone.item.color.color_code}};"
+                    dnd-list="status.milestones"
+                    dnd-draggable="milestone"
+                    dnd-moved="status.milestones.splice($index, 1)"
+                    dnd-effect-allowed="move"
+                    dnd-selected="models.selected = milestone"
+                    ng-class="{'selected': models.selected === milestone}"
+                    >
                         <p>
                             <a href="#!item/{{milestone.item.item_id}}" class="badge" style="background-color: {{milestone.item.color.color_code}} !important;">{{milestone.item.item_title}}</a> > Milestone: <a href="#!item/{{milestone.item_id}}">{{milestone.item_title}}</a>                            
                             <!-- <span class="label" style="background-color: {{milestone.item.color.color_code}} !important;">Add Milestone</span> -->
@@ -25,6 +32,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

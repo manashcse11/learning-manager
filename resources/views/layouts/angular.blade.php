@@ -58,6 +58,11 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="#!item/10">
+                                            Item
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -83,6 +88,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="angularpart/library/angular-drag-and-drop-lists.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
     <script src="angularpart/lmapp.js"></script>
 </body>

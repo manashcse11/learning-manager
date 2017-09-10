@@ -13,9 +13,10 @@ class ItemController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Models\Item $itemModel)
     {
         $this->middleware('auth');
+        $this->itemModel = $itemModel;
     }
 
     /**
@@ -56,5 +57,25 @@ class ItemController extends Controller
         }
         // return response()->json($item->milestoneWithDetail($item->item_id));
         // return redirect()->route('posts');
+    }
+    public function sort(Request $request)
+    {
+        $data = $request->getContent();
+        $input = json_decode($data, true);
+        $priority = countArrayItemsInsideArray($input, 'milestones') * 5; // Initial value, There will be 5 difference in each priority
+        
+        $this->itemModel->where('type_id', 5)->update(['item_priority' => 0]);
+        foreach($input as $status){
+            if(count($status['milestones']) > 0){
+                foreach($status['milestones'] as $milestone){
+                    $item['status_id'] = $status['status_id'];
+                    $item['item_priority'] = $priority;
+                    $this->itemModel->where('item_id', $milestone['item_id'])->update($item);
+                    $priority = $priority - 5;
+                }
+            }
+        }
+        
+        return response()->json(array('sorted' => true));
     }
 }

@@ -1,4 +1,4 @@
-var lmapp = angular.module("LmApp", ["ngRoute"]);
+var lmapp = angular.module("LmApp", ["ngRoute", "dndLists"]);
 
 lmapp.config(function($routeProvider){
     $routeProvider
@@ -14,6 +14,10 @@ lmapp.config(function($routeProvider){
         templateUrl : "angularpart/views/item.html"
         , controller : "ItemController"
     })
+    .when("/dragdrop", {
+        templateUrl : "angularpart/views/simple/simple-frame.html"
+        , controller : "SimpleDemoController"
+    })
     .otherwise({redirectTo:'/'});
 });
 
@@ -27,8 +31,6 @@ lmapp.controller("DashboardController", function($scope, $http){
     }
 
     $scope.modalFormSubmit = function(){
-        // $scope.modal.item_parent_id = item_id;
-        // $scope.modal.status_id = status_id;
         
         var req = {
             method: 'POST',
@@ -56,10 +58,51 @@ lmapp.controller("DashboardController", function($scope, $http){
         url: '/dashboard'
     }).then(function successCallback(response) {
         $scope.dashboard = response.data;
-        console.log($scope.dashboard);
     }, function errorCallback(response) {
 
     });
+
+    $scope.initial = 0;
+    $scope.count = 0;
+    $scope.$watch('dashboard', function() { // Watch drag drop
+        $scope.initial++;
+        $scope.count++;
+        if($scope.count > 1 && $scope.initial > 2){
+
+            var req = {
+                method: 'POST',
+                url: '/item/sort',
+                headers: {
+                  'Content-Type': undefined
+                },
+                data: $scope.dashboard
+            }
+               
+            $http(req)
+            .then(function successCallback(response){
+                console.log(response);
+            }
+            , function errorCallback(response){});
+
+            $scope.count = 0;
+        }
+        
+    }, true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 lmapp.controller("CategoryController", function($scope, $routeParams){
@@ -68,4 +111,23 @@ lmapp.controller("CategoryController", function($scope, $routeParams){
 
 lmapp.controller("ItemController", function($scope, $routeParams){
     $scope.id = $routeParams.item_id;
+});
+
+lmapp.controller("SimpleDemoController", function($scope) {
+    $scope.models = {
+        selected: null,
+        lists: {"A": [], "B": []}
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 3; ++i) {
+        $scope.models.lists.A.push({label: "Item A" + i});
+        $scope.models.lists.B.push({label: "Item B" + i});
+    }
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function(model) {
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
 });

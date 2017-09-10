@@ -24,3 +24,4 @@ Route::get('/progress', 'ProgressController@index')->name('progress');
 Route::get('/category/{id}', 'CategoryController@show')->name('category');
 Route::get('/item/{id}', 'ItemController@show')->name('item');
 Route::post('/item/add', 'ItemController@store')->name('itemadd');
+Route::post('/item/sort', 'ItemController@sort')->name('itemsort');
