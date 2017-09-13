@@ -88,29 +88,42 @@ lmapp.controller("DashboardController", function($scope, $http){
         }
         
     }, true);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
 
-lmapp.controller("CategoryController", function($scope, $routeParams){
+lmapp.controller("CategoryController", function($scope, $http, $routeParams){
     $scope.id = $routeParams.category_id;
 });
 
-lmapp.controller("ItemController", function($scope, $routeParams){
-    $scope.id = $routeParams.item_id;
+lmapp.controller("ItemController", function($scope, $http, $routeParams, $location){
+    $scope.item_id = $routeParams.item_id;
+    $http({
+        method: 'GET',
+        url: '/item/' + $scope.item_id
+    }).then(function successCallback(response) {
+        $scope.statuses = response.data.statuses;
+        $scope.item = response.data.item;
+        $scope.breadcrumb = response.data.breadcrumb;
+    }, function errorCallback(response) {
+
+    });
+
+    $scope.itemFormSave = function(){
+        
+        var req = {
+            method: 'POST',
+            url: '/item/'+$scope.item.item_id+'/update',
+            headers: {
+              'Content-Type': undefined
+            },
+            data: $scope.item
+        }
+           
+        $http(req)
+        .then(function successCallback(response){
+            $location.path('/');
+        }
+        , function errorCallback(response){});
+    }
 });
 
 lmapp.controller("SimpleDemoController", function($scope) {
