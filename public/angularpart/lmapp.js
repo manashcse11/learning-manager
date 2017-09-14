@@ -65,9 +65,8 @@ lmapp.controller("DashboardController", function($scope, $http){
     $scope.initial = 0;
     $scope.count = 0;
     $scope.$watch('dashboard', function() { // Watch drag drop
-        $scope.initial++;
         $scope.count++;
-        if($scope.count > 1 && $scope.initial > 2){
+        if($scope.count > 1){
 
             var req = {
                 method: 'POST',
