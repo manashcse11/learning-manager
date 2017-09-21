@@ -8,7 +8,7 @@
                 <div data-ng-include="'angularpart/views/partials/breadcrumb.html'"></div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                             <form class="form-horizontal">
 
                                 <div class="form-group">
@@ -25,21 +25,21 @@
                                         <textarea class="form-control" rows="3" data-ng-model="item.item_description"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div data-ng-if="item.type_id == 5" class="form-group">
                                     <label for="item_outcome" class="col-md-4 control-label">Outcome</label>
 
                                     <div class="col-md-6">
                                         <textarea class="form-control" rows="3" data-ng-model="item.item_outcome"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div data-ng-if="item.type_id == 5" class="form-group">
                                     <label for="item_point" class="col-md-4 control-label">Point</label>
 
                                     <div class="col-md-6">
                                         <input id="item_point" type="text" class="form-control" data-ng-model="item.item_point" required autofocus>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div data-ng-if="item.type_id == 5" class="form-group">
                                     <label for="name" class="col-md-4 control-label">Status</label>
 
                                     <div class="col-md-6">
@@ -51,12 +51,7 @@
                                     <label for="name" class="col-md-4 control-label">Color</label>
 
                                     <div class="col-md-8">
-                                        <label class="radio-inline"><input type="radio" name="optradio"><span class="label label-default">Item</span></label>
-                                        <label class="radio-inline"><input type="radio" name="optradio"><span style="background-color: #1f618d ;" class="label label-primary">Item</span></label>
-                                        <label class="radio-inline"><input type="radio" name="optradio"><span style="background-color: #5bc0de;" class="label">Item</span></label>
-                                        <label class="radio-inline"><input type="radio" name="optradio"><span style="background-color: #05c439 ;" class="label">Item</span></label>
-                                        <label class="radio-inline"><input type="radio" name="optradio"><span style="background-color: #fd5e13 ;" class="label">Item</span></label>
-                                        <label class="radio-inline"><input type="radio" name="optradio"><span class="label label-danger">Item</span></label>
+                                        <label data-ng-repeat="color in colors" class="radio-inline"><input type="radio" data-ng-model="item.color_id" data-ng-value="color.color_id"><span style="background-color: {{color.color_code}} ;" class="label">{{item.item_title}}</span></label>
                                     </div>
                                 </div>
 

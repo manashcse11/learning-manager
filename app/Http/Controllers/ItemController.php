@@ -13,11 +13,12 @@ class ItemController extends Controller
      *
      * @return void
      */
-    public function __construct(\App\Models\Item $itemModel, \App\Models\Status $statusModel)
+    public function __construct(\App\Models\Item $itemModel, \App\Models\Status $statusModel, \App\Models\Color $colorModel)
     {
         $this->middleware('auth');
         $this->itemModel = $itemModel;
         $this->statusModel = $statusModel;
+        $this->colorModel = $colorModel;
     }
 
     /**
@@ -79,9 +80,10 @@ class ItemController extends Controller
         return response()->json(array('sorted' => true));
     }
     public function show($id){
-        $data['statuses'] = $this->statusModel->get();
         $data['item'] = $this->itemModel->where('item_id', $id)->first();
         $data['breadcrumb'] = $this->generateBreadcrumb($data['item']->item_id, $data['item']->type_id);
+        $data['statuses'] = $this->statusModel->get();
+        $data['colors'] = $this->colorModel->get();
         return response()->json($data);
     }
 
@@ -92,8 +94,6 @@ class ItemController extends Controller
         if($this->itemModel->where('item_id', $id)->update($input)){
             return response()->json(array('success' => true));
         }
-        // return response()->json($item->milestoneWithDetail($item->item_id));
-        // return redirect()->route('posts');
     }
     public function generateBreadcrumb($item_id, $type_id){
 

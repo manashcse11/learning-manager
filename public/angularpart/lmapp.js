@@ -99,9 +99,10 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
         method: 'GET',
         url: '/item/' + $scope.item_id
     }).then(function successCallback(response) {
-        $scope.statuses = response.data.statuses;
-        $scope.item = response.data.item;
         $scope.breadcrumb = response.data.breadcrumb;
+        $scope.item = response.data.item;        
+        $scope.statuses = response.data.statuses;
+        $scope.colors = response.data.colors;
     }, function errorCallback(response) {
 
     });
