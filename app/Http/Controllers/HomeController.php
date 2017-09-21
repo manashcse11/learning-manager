@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\Status;
 
@@ -12,9 +13,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Models\Item $itemModel, \App\Models\Status $statusModel)
     {
         $this->middleware('auth');
+        $this->itemModel = $itemModel;
+        $this->statusModel = $statusModel;
     }
 
     /**
@@ -28,8 +31,8 @@ class HomeController extends Controller
     }
     public function dashboard()
     {
-        $status = new Status();
-        // dd($status->status());
-        return response()->json($status->status());
+        $data['dashboard'] = $this->statusModel->status(Auth::id());
+        $data['items'] = $this->itemModel->where('type_id', 4)->where('user_id', Auth::id())->get(); // 4 = item (e.g. Angularjs or Reactjs or Laravel)
+        return response()->json($data);
     }
 }

@@ -8,13 +8,26 @@
                 <h4 class="modal-title">Add Milestone</h4>
             </div>
             <div class="modal-body">
-                <input type="hidden" data-ng-model="modal.item_parent_id">
                 <input type="hidden" data-ng-model="modal.status_id">
                 <input type="hidden" data-ng-model="modal.type_id">
                 <div class="row">
-                    <div class="col-md-12">
-                        <input id="name" type="text" class="form-control" data-ng-model="modal.item_title" placeholder="Milestone Title" required autofocus>
-                    </div>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="name" class="col-md-3 control-label">Item</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" data-ng-model="modal.item_parent_id" data-ng-options="item.item_id as item.item_title for item in items">
+                                </select>  
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-md-3 control-label">Milestone</label>
+
+                            <div class="col-md-8">
+                                <input id="name" type="text" class="form-control" data-ng-model="modal.item_title" placeholder="Title" required autofocus>                                        
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">

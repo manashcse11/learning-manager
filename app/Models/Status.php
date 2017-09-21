@@ -41,8 +41,10 @@ class Status extends Model
      *
      * @var array
      */
-    public function status(){
-        return $this->with('milestones')->get();
+    public function status($user_id){
+        return $this->with(['milestones' => function($query) use($user_id){
+            $query->where('user_id', $user_id);
+        }])->get();
     }
 
 }

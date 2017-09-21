@@ -23,11 +23,10 @@ lmapp.config(function($routeProvider){
 
 lmapp.controller("DashboardController", function($scope, $http){
     $scope.modal = [];
-    $scope.name = "Manash";
-    $scope.modalClick = function(item_id, status_id, type_id){
-        $scope.modal.item_parent_id = item_id;
+    $scope.modalClick = function(status_id, type_id){
         $scope.modal.status_id = status_id;
         $scope.modal.type_id = type_id;
+        $scope.modal.item_parent_id = $scope.items[0].item_id; // Set first element of item as default
     }
 
     $scope.modalFormSubmit = function(){
@@ -57,7 +56,8 @@ lmapp.controller("DashboardController", function($scope, $http){
         method: 'GET',
         url: '/dashboard'
     }).then(function successCallback(response) {
-        $scope.dashboard = response.data;
+        $scope.dashboard = response.data.dashboard;
+        $scope.items = response.data.items;
     }, function errorCallback(response) {
 
     });
