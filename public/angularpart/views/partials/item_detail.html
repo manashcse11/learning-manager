@@ -11,30 +11,18 @@
                             <th>Point</th>
                             <th>
                                 Status
-                                <span class="label label-todo">1</span>
-                                <span class="label label-inprogress">2</span>
-                                <span class="label label-done">0</span>
+                                <span class="label label-todo">{{status_count[0].total}}</span>
+                                <span class="label label-inprogress">{{status_count[1].total}}</span>
+                                <span class="label label-done">{{status_count[2].total}}</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Read full doc & keep a summarize gist </td>
-                            <td>5</td>
-                            <td><span class="label label-todo">To Do</span></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>3</td>
-                            <td><span class="label label-done">Done</span></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Read full doc & keep a summarize gist </td>
-                            <td>2</td>
-                            <td><span class="label label-inprogress">In Progress</span></td>
+                        <tr data-ng-repeat="milestone in item.child">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{milestone.item_title}}</td>
+                            <td>{{milestone.item_point}}</td>
+                            <td><span class="label label-{{milestone.status.status_class}}">{{milestone.status.status_title}}</span></td>
                         </tr>
                     </tbody>
                 </table>  

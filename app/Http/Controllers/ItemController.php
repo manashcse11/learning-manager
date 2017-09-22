@@ -80,10 +80,11 @@ class ItemController extends Controller
         return response()->json(array('sorted' => true));
     }
     public function show($id){
-        $data['item'] = $this->itemModel->where('item_id', $id)->first();
+        $data['item'] = $this->itemModel->itemWithChild($id);
         $data['breadcrumb'] = $this->generateBreadcrumb($data['item']->item_id, $data['item']->type_id);
         $data['statuses'] = $this->statusModel->get();
         $data['colors'] = $this->colorModel->get();
+        $data['status_count'] = $this->itemModel->countByStatus($id, $data['item']->type_id);
         return response()->json($data);
     }
 

@@ -101,6 +101,7 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
     }).then(function successCallback(response) {
         $scope.breadcrumb = response.data.breadcrumb;
         $scope.item = response.data.item;        
+        $scope.status_count = response.data.status_count;      
         $scope.statuses = response.data.statuses;
         $scope.colors = response.data.colors;
     }, function errorCallback(response) {

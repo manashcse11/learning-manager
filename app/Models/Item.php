@@ -36,6 +36,12 @@ class Item extends Model
         return $this->hasOne('App\Models\Item', 'item_id', 'item_parent_id')->with('color')->with('subcategory')->with('category');
     }
 
+    public function child(){
+        return $this->hasMany('App\Models\Item', 'item_parent_id', 'item_id')->with(['child' => function($query){
+            $query->orderBy('status_id');
+        }])->with('status');
+    }
+
     public function subcategory(){
         return $this->hasOne('App\Models\Item', 'item_id', 'item_parent_id');
     }
@@ -48,6 +54,10 @@ class Item extends Model
         return $this->hasOne('App\Models\Color', 'color_id', 'color_id');
     }
 
+    public function status(){
+        return $this->hasOne('App\Models\Status', 'status_id', 'status_id');
+    }
+
     /**
      * User defined methods
      *
@@ -55,6 +65,16 @@ class Item extends Model
      */
     public function milestoneWithDetail($item_id){
         return $this->where('item_id', $item_id)->with('item')->first();
+    }
+
+    public function itemWithChild($item_id){
+        return $this->where('item_id', $item_id)->with(['child' => function($query){
+            $query->orderBy('status_id');
+        }])->first();
+    }
+
+    public function countByStatus($item_id, $type_id){
+        return $this->select('status_id', \DB::raw('count(status_id) as total'))->where('item_parent_id', $item_id)->groupBy('status_id')->orderBy('status_id')->get();
     }
 
 }
