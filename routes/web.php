@@ -21,6 +21,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::get('/progress', 'ProgressController@index')->name('progress');
+Route::get('/progress/{id}', 'ProgressController@show')->name('progressIndividual');
 Route::get('/category/{id}', 'CategoryController@show')->name('category');
 Route::get('/item/{id}', 'ItemController@show')->name('item');
 Route::post('/item/add', 'ItemController@store')->name('itemadd');

@@ -77,4 +77,8 @@ class Item extends Model
         return $this->select('status_id', \DB::raw('count(status_id) as total'))->where('item_parent_id', $item_id)->groupBy('status_id')->orderBy('status_id')->get();
     }
 
+    public function milestonesPointSumByStatus($item_id){
+        return $this->select('status_id', \DB::raw('sum(item_point) as total'))->where('item_parent_id', $item_id)->groupBy('status_id')->orderBy('status_id')->get();
+    }
+
 }

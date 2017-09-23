@@ -106,12 +106,24 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
         $scope.status_count = response.data.status_count;      
         $scope.statuses = response.data.statuses;
         $scope.colors = response.data.colors;
+        // Progress
+        if($scope.item.type_id == 4){
+            $http({
+                method: 'GET',
+                url: '/progress/' + $scope.item_id
+            }).then(function successCallback(response) {
+                $scope.progress = response.data.progress;
+            }, function errorCallback(response) {
+        
+            });
+        }
+        
     }, function errorCallback(response) {
 
     });
 
     $scope.itemFormSave = function(){
-        
+        delete $scope.item['child']; // delete extra keys not exist in table
         var req = {
             method: 'POST',
             url: '/item/'+$scope.item.item_id+'/update',
