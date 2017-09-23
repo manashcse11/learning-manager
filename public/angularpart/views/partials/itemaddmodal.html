@@ -8,11 +8,12 @@
                 <h4 class="modal-title">Add Milestone</h4>
             </div>
             <div class="modal-body">
+                <input data-ng-if="hasParent" type="hidden" data-ng-model="modal.item_parent_id">
                 <input type="hidden" data-ng-model="modal.status_id">
                 <input type="hidden" data-ng-model="modal.type_id">
                 <div class="row">
                     <form class="form-horizontal">
-                        <div class="form-group">
+                        <div data-ng-if="!hasParent" class="form-group">
                             <label for="name" class="col-md-3 control-label">Item</label>
 
                             <div class="col-md-6">

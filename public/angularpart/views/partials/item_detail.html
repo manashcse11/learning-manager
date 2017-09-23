@@ -1,7 +1,14 @@
 <div class="row">
+    <!-- Modal -->
+    <div data-ng-include="'/angularpart/views/partials/itemaddmodal.html'"></div>
+    <!-- End Modal -->
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading">Milestones<span style="float:right">Add</span></div>
+            <div class="panel-heading">Milestones
+                <button style="float:right; line-height: 0.5;" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" data-ng-click="modalClick(1, 5)">
+                    <span class="glyphicon glyphicon-plus"></span> Add Milestone
+                </button>
+            </div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -20,7 +27,7 @@
                     <tbody>
                         <tr data-ng-repeat="milestone in item.child">
                             <th scope="row">{{$index+1}}</th>
-                            <td>{{milestone.item_title}}</td>
+                            <td><a href="#!item/{{milestone.item_id}}">{{milestone.item_title}}</a></td>
                             <td>{{milestone.item_point}}</td>
                             <td><span class="label label-{{milestone.status.status_class}}">{{milestone.status.status_title}}</span></td>
                         </tr>

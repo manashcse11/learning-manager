@@ -64,7 +64,7 @@ class Item extends Model
      * @var array
      */
     public function milestoneWithDetail($item_id){
-        return $this->where('item_id', $item_id)->with('item')->first();
+        return $this->where('item_id', $item_id)->with('item')->with('status')->first();
     }
 
     public function itemWithChild($item_id){

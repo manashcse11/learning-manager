@@ -27,6 +27,7 @@ lmapp.controller("DashboardController", function($scope, $http){
         $scope.modal.status_id = status_id;
         $scope.modal.type_id = type_id;
         $scope.modal.item_parent_id = $scope.items[0].item_id; // Set first element of item as default
+        $scope.hasParent = false; // Set false, need to show Item dropdown
     }
 
     $scope.modalFormSubmit = function(){
@@ -100,7 +101,8 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
         url: '/item/' + $scope.item_id
     }).then(function successCallback(response) {
         $scope.breadcrumb = response.data.breadcrumb;
-        $scope.item = response.data.item;        
+        $scope.item = response.data.item;       
+        console.log($scope.item); 
         $scope.status_count = response.data.status_count;      
         $scope.statuses = response.data.statuses;
         $scope.colors = response.data.colors;
@@ -122,6 +124,40 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
         $http(req)
         .then(function successCallback(response){
             $location.path('/');
+        }
+        , function errorCallback(response){});
+    }
+
+
+    $scope.modal = [];
+    $scope.modalClick = function(status_id, type_id){
+        $scope.modal.status_id = status_id;
+        $scope.modal.type_id = type_id;
+        $scope.modal.item_parent_id = $scope.item.item_id; // Set first element of item as default
+        $scope.hasParent = true; // Set true, do not show Item dropdown
+    }
+
+    $scope.modalFormSubmit = function(){
+        
+        var req = {
+            method: 'POST',
+            url: '/item/add',
+            headers: {
+              'Content-Type': undefined
+            },
+            data: { item_parent_id: $scope.modal.item_parent_id, status_id: $scope.modal.status_id, item_title: $scope.modal.item_title, type_id: $scope.modal.type_id }
+        }
+           
+        $http(req)
+        .then(function successCallback(response){
+            console.log(response.data);
+            $scope.item.child.unshift(response.data);
+            angular.forEach($scope.status_count, function(value, key){
+                if(value.status_id == response.data.status_id){
+                    value.total++;
+                }
+            });
+            $scope.modal = [];
         }
         , function errorCallback(response){});
     }
