@@ -150,13 +150,19 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
            
         $http(req)
         .then(function successCallback(response){
-            console.log(response.data);
             $scope.item.child.unshift(response.data);
-            angular.forEach($scope.status_count, function(value, key){
-                if(value.status_id == response.data.status_id){
-                    value.total++;
+            if($scope.modal.type_id == 5){ // Milestone
+                if($scope.status_count.length > 0){
+                    angular.forEach($scope.status_count, function(value, key){
+                        if(value.status_id == response.data.status_id){
+                            value.total++;
+                        }
+                    });
                 }
-            });
+                else{
+                    $scope.status_count = [{'status_id' : response.data.status_id, 'total' : 1}];
+                }
+            }            
             $scope.modal = [];
         }
         , function errorCallback(response){});

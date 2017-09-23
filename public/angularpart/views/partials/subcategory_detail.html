@@ -1,0 +1,30 @@
+<div class="row">
+    <!-- Modal -->
+    <div data-ng-include="'/angularpart/views/partials/itemaddmodal.html'"></div>
+    <!-- End Modal -->
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Items
+                <button style="float:right; line-height: 0.5;" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" data-ng-click="modalClick(0, 4)">
+                    <span class="glyphicon glyphicon-plus"></span> Add Item
+                </button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="child in item.child">
+                            <th scope="row">{{$index+1}}</th>
+                            <td><a href="#!item/{{child.item_id}}">{{child.item_title}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>  
+            </div>
+        </div>
+    </div>
+</div>
