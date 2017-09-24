@@ -53,13 +53,23 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('progress') }}">
-                                            Progress Summary
+                                        <a href="#!subcategory">
+                                            Sub Category
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#!item/10">
+                                        <a href="#!item">
                                             Item
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#!milestone">
+                                            Milestone
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('progress') }}">
+                                            Progress Summary
                                         </a>
                                     </li>
                                     <li>

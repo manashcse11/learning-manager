@@ -128,30 +128,8 @@ class ItemController extends Controller
             return $breadcrumb;
         }        
     }
-    // public function generateBreadcrumb($item_id, $type_id){
-
-    //     if(isMilestone($type_id)){
-    //         $param = $this->itemModel->milestoneWithDetail($item_id);
-    //         $breadcrumb = '<div style="border-bottom: 2px solid '. $param->item->color->color_code .'; border-left: 2px solid '. $param->item->color->color_code .'" class="panel-heading">
-    //             <a href="#!category/'. $param->item->category->category_id .'" class="badge bgblue">'. $param->item->category->category_title .'</a> >> <a href="#!item/'. $param->item->subcategory->item_id .'" class="badge bgorange">'. $param->item->subcategory->item_title .'</a> >> <a href="#!item/'. $param->item->item_id .'" class="badge" style="background-color: '. $param->item->color->color_code .' !important;">'. $param->item->item_title .'</a> >> <span class="item-title">Milestone: '. $param->item_title .'</span>
-    //         </div>';
-    //         return $breadcrumb;
-    //     }     
-
-    //     else if(isItem($type_id)){ // For example Angularjs or Laravel
-    //         $param = $this->itemModel->where('item_id', $item_id)->with('color')->with('subcategory')->with('category')->first();
-    //         $breadcrumb = '<div style="border-bottom: 2px solid '. $param->color->color_code .'; border-left: 2px solid '. $param->color->color_code .'" class="panel-heading">
-    //             <a href="#!category/'. $param->category->category_id .'" class="badge bgblue">'. $param->category->category_title .'</a> >> <a href="#!item/'. $param->subcategory->item_id .'" class="badge bgorange">'. $param->subcategory->item_title .'</a> >> '. $param->item_title .'</span>
-    //         </div>';
-    //         return $breadcrumb;
-    //     }   
-
-    //     else if(isSubCategory($type_id)){ // For example Language/Framework/Technology or Tool
-    //         $param = $this->itemModel->where('item_id', $item_id)->with('category')->first();
-    //         $breadcrumb = '<div style="border-bottom: 2px solid #FEAF20; border-left: 2px solid #FEAF20" class="panel-heading">
-    //             <a href="#!category/'. $param->category->category_id .'" class="badge bgblue">'. $param->category->category_title .'</a> >> '. $param->item_title .'</span>
-    //         </div>';
-    //         return $breadcrumb;
-    //     }        
-    // }
+    public function subcategories(){
+        $data['subcategories'] = $this->itemModel->subcategoriesByUserID(Auth::id());
+        return response()->json($data);
+    }
 }

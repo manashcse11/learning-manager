@@ -81,4 +81,8 @@ class Item extends Model
         return $this->select('status_id', \DB::raw('sum(item_point) as total'))->where('item_parent_id', $item_id)->groupBy('status_id')->orderBy('status_id')->get();
     }
 
+    public function subcategoriesByUserID($user_id){
+        return $this->where('user_id', $user_id)->where('type_id', 3)->with('category')->get();
+    }
+
 }

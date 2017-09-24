@@ -16,7 +16,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'status_title', 'status_description'
+        'category_title', 'category_description'
     ];
 
     /**
@@ -32,17 +32,16 @@ class Category extends Model
      * @var array
      */
     
-    // public function milestones(){
-    //     return $this->hasMany('App\Models\Item', 'status_id', 'status_id')->with('items')->with('category');
-    // }
-
     /**
      * User defined methods
      *
      * @var array
      */
-    // public function status(){
-    //     return $this->with('milestones')->get();
-    // }
+    public function allCategory(){
+        return $this->where('category_status', 1)->get();
+    }
+    public function categoryByID($id){
+        return $this->where('category_status', 1)->where('category_id', $id)->first();
+    }
 
 }

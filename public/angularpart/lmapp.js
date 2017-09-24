@@ -18,6 +18,10 @@ lmapp.config(function($routeProvider){
         templateUrl : "angularpart/views/simple/simple-frame.html"
         , controller : "SimpleDemoController"
     })
+    .when("/subcategory", {
+        templateUrl : "angularpart/views/manage_subcatgeory.html"
+        , controller : "SubcategoryController"
+    })
     .otherwise({redirectTo:'/'});
 });
 
@@ -179,6 +183,28 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
         }
         , function errorCallback(response){});
     }
+});
+
+lmapp.controller("SubcategoryController", function($scope, $http, $routeParams){
+    $scope.item = [];
+    $http({
+        method: 'GET',
+        url: '/categories'
+    }).then(function successCallback(response) {
+        $scope.categories = response.data.categories;
+        $scope.item.category_id = $scope.categories[0].category_id;
+    }, function errorCallback(response) {
+
+    });
+    $http({
+        method: 'GET',
+        url: '/subcategories'
+    }).then(function successCallback(response) {
+        $scope.subcategories = response.data.subcategories;
+    }, function errorCallback(response) {
+
+    });
+
 });
 
 lmapp.controller("SimpleDemoController", function($scope) {
