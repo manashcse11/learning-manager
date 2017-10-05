@@ -33,7 +33,7 @@ class Status extends Model
      */
     
     public function milestones(){
-        return $this->hasMany('App\Models\Item', 'status_id', 'status_id')->orderBy('item_priority', 'desc')->with('item');
+        return $this->hasMany('App\Models\Item', 'status_id', 'status_id')->where('type_id', 5)->orderBy('item_priority', 'desc')->with('item');
     }
 
     /**
