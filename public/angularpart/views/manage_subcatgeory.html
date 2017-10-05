@@ -4,22 +4,22 @@
             <div class="panel panel-default">
                 <div class="panel-heading panel-heading-default">Add Sub Category</div>
                 <div class="panel-body">
-                        <form>
-                                <div class="form-group">
-                                    <label for="item_title">Title:</label>
-                                    <input type="text" class="form-control" id="item.item_title">
-                                </div>
-                                <div class="form-group">
-                                    <label for="item_description">Description:</label>
-                                    <textarea class="form-control" rows="3" data-ng-model="item.item_description"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="category_id">Category:</label>
-                                    <select class="form-control" data-ng-model="item.category_id" data-ng-options="category.category_id as category.category_title for category in categories">
-                                    </select>  
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add</button>
-                        </form>
+                    <form>
+                        <div class="form-group">
+                            <label for="item_title">Title:</label>
+                            <input type="text" class="form-control" data-ng-model="item.item_title">
+                        </div>
+                        <div class="form-group">
+                            <label for="item_description">Description:</label>
+                            <textarea class="form-control" rows="3" data-ng-model="item.item_description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="category_id">Category:</label>
+                            <select class="form-control" data-ng-model="item.category_id" data-ng-options="category.category_id as category.category_title for category in categories">
+                            </select>  
+                        </div>
+                        <button data-ng-click="addSubCategory()" type="submit" class="btn btn-primary">Add</button>
+                    </form>
                 </div>
             </div>
         </div>

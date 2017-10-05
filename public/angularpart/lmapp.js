@@ -205,6 +205,24 @@ lmapp.controller("SubcategoryController", function($scope, $http, $routeParams){
 
     });
 
+    $scope.addSubCategory = function(){
+        var req = {
+            method: 'POST',
+            url: '/subcategories/add',
+            headers: {
+              'Content-Type': undefined
+            },
+            data: { item_title: $scope.item.item_title, item_description: $scope.item.item_description, category_id: $scope.item.category_id }
+        }
+           
+        $http(req)
+        .then(function successCallback(response){
+            $scope.subcategories.unshift(response.data);      
+            $scope.item = [];
+        }
+        , function errorCallback(response){});
+    }
+
 });
 
 lmapp.controller("SimpleDemoController", function($scope) {

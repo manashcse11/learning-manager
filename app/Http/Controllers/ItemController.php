@@ -30,13 +30,11 @@ class ItemController extends Controller
     {
         return view('home');
     }
-    public function dashboard()
-    {
+    public function dashboard() {
         $status = new Status();
         return response()->json($status->status());
     }
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $data = $request->getContent();
         $input = json_decode($data, true);
         $item = new Item();
@@ -56,8 +54,20 @@ class ItemController extends Controller
         if($item->save()){
             return response()->json($item->milestoneWithDetail($item->id));
         }
-        // return response()->json($item->milestoneWithDetail($item->item_id));
-        // return redirect()->route('posts');
+    }
+    public function storeSubCategory(Request $request) {
+        $data = $request->getContent();
+        $input = json_decode($data, true);
+        $item = new Item();
+        $item->type_id = 3;
+        $item->category_id = $input['category_id'];
+        $item->user_id = Auth::id();
+        // $item->item_parent_id = 0;
+        $item->item_title = $input['item_title'];
+        $item->item_description = $input['item_description'];
+        if($item->save()){
+            return response()->json($item->itemByID($item->id));
+        }
     }
     public function sort(Request $request)
     {

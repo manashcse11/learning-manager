@@ -28,4 +28,5 @@ Route::get('/item/{id}', 'ItemController@show')->name('item');
 Route::post('/item/add', 'ItemController@store')->name('itemadd');
 Route::post('/item/{id}/update', 'ItemController@update')->name('itemupdate');
 Route::get('/subcategories', 'ItemController@subcategories')->name('subcategories');
+Route::post('/subcategories/add', 'ItemController@storeSubCategory')->name('addsubcategory');
 Route::post('/item/sort', 'ItemController@sort')->name('itemsort');

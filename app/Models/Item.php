@@ -85,4 +85,8 @@ class Item extends Model
         return $this->where('user_id', $user_id)->where('type_id', 3)->with('category')->get();
     }
 
+    public function itemByID($item_id){
+        return $this->where('item_id', $item_id)->with('category')->first();
+    }
+
 }
