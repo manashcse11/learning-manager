@@ -12,7 +12,7 @@
                 <input type="hidden" data-ng-model="modal.status_id">
                 <input type="hidden" data-ng-model="modal.type_id">
                 <div class="row">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" name="myForm">
                         <div class="form-group">
                             <label for="name" class="col-md-3 control-label">Item</label>
 
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal" data-ng-click="modalFormSubmit()">Add</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" data-ng-disabled="myForm.$invalid" data-ng-click="modalFormSubmit()">Add</button>
             </div>
         </div>
     

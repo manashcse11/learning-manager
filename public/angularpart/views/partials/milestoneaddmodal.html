@@ -12,7 +12,7 @@
                 <input type="hidden" data-ng-model="modal.status_id">
                 <input type="hidden" data-ng-model="modal.type_id">
                 <div class="row">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" name="myForm">
                         <div data-ng-if="!hasParent" class="form-group">
                             <label for="name" class="col-md-3 control-label">Item</label>
 
@@ -25,14 +25,14 @@
                             <label for="name" class="col-md-3 control-label">Milestone</label>
 
                             <div class="col-md-8">
-                                <input id="name" type="text" class="form-control" data-ng-model="modal.item_title" placeholder="Title" required autofocus>                                        
+                                <input id="name" type="text" class="form-control" data-ng-model="modal.item_title" required autofocus>                                        
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal" data-ng-click="modalFormSubmit()">Add</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" data-ng-disabled="myForm.$invalid" data-ng-click="modalFormSubmit()">Add</button>
             </div>
         </div>
     
