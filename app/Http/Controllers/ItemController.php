@@ -64,7 +64,7 @@ class ItemController extends Controller
         $item->user_id = Auth::id();
         // $item->item_parent_id = 0;
         $item->item_title = $input['item_title'];
-        $item->item_description = $input['item_description'];
+        $item->item_description = isset($input['item_description']) ? $input['item_description'] : "";
         if($item->save()){
             return response()->json($item->itemByID($item->id));
         }

@@ -20,7 +20,7 @@ class CreateItemTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned()->default(1);
             $table->integer('item_parent_id')->unsigned()->default(0);
-            $table->string('item_title')->unique();
+            $table->string('item_title');
             $table->string('item_description')->nullable();
             $table->string('item_outcome')->nullable();
             $table->integer('item_priority')->unsigned()->default(1);
