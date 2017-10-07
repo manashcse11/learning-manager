@@ -11,9 +11,8 @@
                         <span class="glyphicon glyphicon-plus"></span> Add Milestone
                     </button>
                 </div>
-                <div class="panel-body">
+                <div dnd-list="status.milestones" class="panel-body">
                     <div data-ng-repeat="milestone in status.milestones" class="notice" style="border-color: {{milestone.item.color.color_code}};"
-                    dnd-list="status.milestones"
                     dnd-draggable="milestone"
                     dnd-moved="status.milestones.splice($index, 1)"
                     dnd-effect-allowed="move"
