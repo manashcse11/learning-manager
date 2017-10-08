@@ -59,16 +59,6 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#!item">
-                                            Item
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#!milestone">
-                                            Milestone
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="{{ route('progress') }}">
                                             Progress Summary
                                         </a>
