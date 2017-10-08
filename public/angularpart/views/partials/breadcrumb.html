@@ -1,17 +1,20 @@
 <div data-ng-if="item.type_id == 5" style="border-bottom: 2px solid {{breadcrumb.color}}; border-left: 2px solid {{breadcrumb.color}}" class="panel-heading">
-    <a href="#!category/{{breadcrumb.category.id}}" class="badge bgblue">{{breadcrumb.category.title}}</a> 
+    <!-- <a href="#!category/{{breadcrumb.category.id}}" class="badge bgblue">{{breadcrumb.category.title}}</a>  -->
+    <a href="javascript:;" class="badge bgblue">{{breadcrumb.category.title}}</a> 
     >> <a href="#!item/{{breadcrumb.subcategory.id}}" class="badge bgorange">{{breadcrumb.subcategory.title}}</a> 
     >> <a href="#!item/{{breadcrumb.item.id}}" class="badge" style="background-color: {{breadcrumb.color}} !important;">{{breadcrumb.item.title}}</a> 
     >> <span class="item-title">Milestone: {{breadcrumb.milestone}}</span>
 </div>
 
 <div data-ng-if="item.type_id == 4" style="border-bottom: 2px solid {{breadcrumb.color}}; border-left: 2px solid {{breadcrumb.color}}" class="panel-heading">
-    <a href="#!category/{{breadcrumb.category.id}}" class="badge bgblue">{{breadcrumb.category.title}}</a> 
+    <!-- <a href="#!category/{{breadcrumb.category.id}}" class="badge bgblue">{{breadcrumb.category.title}}</a>  -->
+    <a href="javascript:;" class="badge bgblue">{{breadcrumb.category.title}}</a> 
     >> <a href="#!item/{{breadcrumb.subcategory.id}}" class="badge bgorange">{{breadcrumb.subcategory.title}}</a> 
     >> <span class="badge" style="background-color: {{breadcrumb.color}} !important;">{{breadcrumb.item}}</span>  
 </div>
 
 <div data-ng-if="item.type_id == 3" style="border-bottom: 2px solid {{breadcrumb.color}}; border-left: 2px solid {{breadcrumb.color}}" class="panel-heading">
-    <a href="#!category/{{breadcrumb.category.id}}" class="badge bgblue">{{breadcrumb.category.title}}</a> 
+    <!-- <a href="#!category/{{breadcrumb.category.id}}" class="badge bgblue">{{breadcrumb.category.title}}</a>  -->
+    <a href="javascript:;" class="badge bgblue">{{breadcrumb.category.title}}</a> 
     >> <span class="badge bgorange">{{breadcrumb.subcategory}}</span> 
 </div>
