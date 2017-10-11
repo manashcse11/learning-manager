@@ -22,6 +22,10 @@ lmapp.config(function($routeProvider){
         templateUrl : "angularpart/views/manage_subcatgeory.html"
         , controller : "SubcategoryController"
     })
+    .when("/progress", {
+        templateUrl : "angularpart/views/progress_summary.html"
+        , controller : "ProgressSummaryController"
+    })
     .otherwise({redirectTo:'/'});
 });
 
@@ -84,7 +88,6 @@ lmapp.controller("DashboardController", function($scope, $http){
                
             $http(req)
             .then(function successCallback(response){
-                console.log(response);
             }
             , function errorCallback(response){});
 
@@ -106,7 +109,6 @@ lmapp.controller("ItemController", function($scope, $http, $routeParams, $locati
     }).then(function successCallback(response) {
         $scope.breadcrumb = response.data.breadcrumb;
         $scope.item = response.data.item;       
-        console.log($scope.item); 
         $scope.status_count = response.data.status_count;      
         $scope.statuses = response.data.statuses;
         $scope.colors = response.data.colors;
@@ -222,6 +224,18 @@ lmapp.controller("SubcategoryController", function($scope, $http, $routeParams){
         }
         , function errorCallback(response){});
     }
+
+});
+
+lmapp.controller("ProgressSummaryController", function($scope, $http){
+    $http({
+        method: 'GET',
+        url: '/progress'
+    }).then(function successCallback(response) {
+        $scope.summary = response.data.summary;
+    }, function errorCallback(response) {
+
+    });
 
 });
 

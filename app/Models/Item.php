@@ -36,6 +36,10 @@ class Item extends Model
         return $this->hasOne('App\Models\Item', 'item_id', 'item_parent_id')->with('color')->with('subcategory')->with('category');
     }
 
+    public function milestones(){
+        return $this->hasMany('App\Models\Item', 'item_parent_id', 'item_id')->orderBy('status_id');
+    }
+
     public function child(){
         return $this->hasMany('App\Models\Item', 'item_parent_id', 'item_id')->with(['child' => function($query){
             $query->orderBy('status_id');
@@ -56,6 +60,14 @@ class Item extends Model
 
     public function status(){
         return $this->hasOne('App\Models\Status', 'status_id', 'status_id');
+    }
+    /**
+     * Relationships
+     *
+     * @var array
+     */
+    public function scopeItems($q, $user_id){
+        return $q->where('user_id', $user_id)->where('type_id', 4);
     }
 
     /**
@@ -79,6 +91,10 @@ class Item extends Model
 
     public function milestonesPointSumByStatus($item_id){
         return $this->select('status_id', \DB::raw('sum(item_point) as total'))->where('item_parent_id', $item_id)->groupBy('status_id')->orderBy('status_id')->get();
+    }
+
+    public function userAllMilestonesPointSumByStatus($user_id){
+        return $this->items($user_id)->with('milestones')->get();
     }
 
     public function subcategoriesByUserID($user_id){

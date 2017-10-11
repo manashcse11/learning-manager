@@ -23,9 +23,32 @@ class ProgressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function groupByStatusSumByPoint($collect){
+        return $grouped = $collect->groupBy('status_id')
+        ->map(function ($item) {
+            return $item->sum('item_point');
+        });
+    }
+
+    public function processForProgressInput($grouped){
+        foreach($grouped as $key => $val){
+            $input = array();
+            $input['status_id'] = $key;
+            $input['total'] = $val;
+            $inputs[] = $input;
+        }
+        return $inputs;
+    }
     public function index()
     {
-        return view('progress_summary');
+        $points = $this->itemModel->userAllMilestonesPointSumByStatus(Auth::id());
+        foreach($points as $list){
+            $grouped = $this->groupByStatusSumByPoint($list->milestones);
+            $list->progress = $this->progress($this->processForProgressInput($grouped));
+            unset($list->milestones);
+        }
+        $data['summary'] = $points;
+        return response()->json($data);
     }
 
     public function show($id){

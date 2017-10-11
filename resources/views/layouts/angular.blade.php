@@ -59,7 +59,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('progress') }}">
+                                        <a href="#!progress">
                                             Progress Summary
                                         </a>
                                     </li>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-default">Progress Summary</div>
+                <div class="panel-body">
+                    <ul style="list-style: none;">
+                        <li data-ng-repeat="item in summary">
+                            {{$index+1}}. {{item.item_title}}: 
+                            <div class="progress">
+                                <div class="progress-bar bggreen" role="progressbar" style="width: {{item.progress}}%;" aria-valuenow="{{item.progress}}" aria-valuemin="0" aria-valuemax="100">{{item.progress}}%</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
