@@ -221,6 +221,7 @@ lmapp.controller("SubcategoryController", function($scope, $http, $routeParams){
         .then(function successCallback(response){
             $scope.subcategories.unshift(response.data);      
             $scope.item = [];
+            $scope.item.category_id = $scope.categories[0].category_id;
         }
         , function errorCallback(response){});
     }
