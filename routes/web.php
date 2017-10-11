@@ -18,6 +18,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/instruction', 'InstructionController@index')->name('how');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::get('/progress', 'ProgressController@index')->name('progress');
